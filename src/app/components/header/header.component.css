@@ -1,0 +1,17 @@
+.nav-link {
+    cursor: pointer;
+}
+
+.cont {
+    display: flex;
+    gap: 10px;
+}
+
+.nv {
+    display: flex;
+    flex-direction: row;
+}
+
+.nav-item {
+    margin: auto;
+}
