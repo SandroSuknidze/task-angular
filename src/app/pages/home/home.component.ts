@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, Output } from '@angular/core';
 import { HousingLocation } from '../../services/product/housing-location';
 import { ProductService } from '../../services/product/product.service';
 
@@ -11,12 +11,18 @@ export class HomeComponent {
   housingLocationList: HousingLocation[] = [];
   productService: ProductService = inject(ProductService);
 
-
   constructor() {
-    this.productService
-      .getAllHousingLocations()
+    this.loadHousingLocations();
+  }
+
+  private loadHousingLocations(): void {
+    this.productService.getAllHousingLocations()
       .then((housingLocationList: HousingLocation[]) => {
         this.housingLocationList = housingLocationList;
       });
+  }
+
+  onDeleteHousingLocation(id: number): void {
+    this.housingLocationList = this.housingLocationList.filter(location => location.id !== id);
   }
 }

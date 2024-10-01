@@ -2,5 +2,6 @@
     <app-product
       *ngFor="let housingLocation of housingLocationList"
       [housingLocation]="housingLocation"
+      (delete)="onDeleteHousingLocation($event)"
     ></app-product>
   </section>
