@@ -1,0 +1,19 @@
+.error-container {
+  text-align: center;
+  margin: 50px auto;
+  padding: 20px;
+  border: 1px solid #ff0000;
+  background-color: #ffe6e6;
+  color: #ff0000;
+  border-radius: 5px;
+  max-width: 400px;
+}
+
+h1 {
+  font-size: 2em;
+}
+
+a {
+  text-decoration: none;
+  color: #007bff;
+}

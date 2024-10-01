@@ -1,7 +1,7 @@
 <section class="listing">
   <img
     class="listing-photo"
-    [src]="housingLocation.photo"
+    [src]="'data:image/jpeg;base64,' + housingLocation.photo"
     alt="Exterior photo of {{ housingLocation.name }}"
   />
   <h2 class="listing-heading">
@@ -12,6 +12,12 @@
   </p>
   <div class="btn-cont">
     <a [routerLink]="['details', housingLocation.id]">Learn More</a>
+    <button
+      class="edit-button"
+      [routerLink]="['housing-locations/edit/', housingLocation.id]"
+    >
+      Edit
+    </button>
     <button
       class="delete-button"
       (click)="deleteHousingLocation(housingLocation.id)"

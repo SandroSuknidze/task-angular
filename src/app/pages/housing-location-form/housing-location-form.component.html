@@ -1,0 +1,67 @@
+<form [formGroup]="housingLocationForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="name">Name:</label>
+    <input id="name" formControlName="name" />
+    @if(housingLocationForm.controls.name.errors?.["required"]) {
+    <div>Name is required.</div>
+    }
+  </div>
+
+  <div>
+    <label for="city">City:</label>
+    <input id="city" formControlName="city" />
+
+    @if(housingLocationForm.controls.city.errors?.["required"]) {
+
+    <div>City is required.</div>
+    }
+  </div>
+
+  <div>
+    <label for="state">State:</label>
+    <input id="state" formControlName="state" />
+    @if(housingLocationForm.controls.state.errors?.["required"]) {
+
+    <div>State is required.</div>
+    }
+  </div>
+
+  <div>
+    <label for="photo">Photo URL:</label>
+    <input
+      type="file"
+      id="imageUpload"
+      (change)="onImageSelected($event)"
+      accept="image/*"
+    />
+    @if(housingLocationForm.controls.photo.errors?.["required"]) {
+
+    <div>Photo URL is required.</div>
+    } @if(imagePreview) {
+    <div class="image-preview">
+      <h5 class="image-prev">Image Preview:</h5>
+      <img [src]="imagePreview" alt="Image Preview" width="100px" height="100px"/>
+    </div>
+    }
+  </div>
+
+  <div>
+    <label for="availableUnits">Available Units:</label>
+    <input id="availableUnits" type="number" formControlName="availableUnits" />
+    @if(housingLocationForm.controls.availableUnits.errors?.["required"] ||
+    housingLocationForm.controls.availableUnits.errors?.["min"]) {
+
+    <div>Required and Must be 0 or greater.</div>
+    }
+  </div>
+
+  <div>
+    <label> <input type="checkbox" formControlName="wifi" /> WiFi </label>
+  </div>
+
+  <div>
+    <label> <input type="checkbox" formControlName="laundry" /> Laundry </label>
+  </div>
+
+  <button type="submit" [disabled]="housingLocationForm.invalid">Submit</button>
+</form>

@@ -10,12 +10,16 @@ import { HeaderComponent } from './components/header/header.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 import { ProductComponent } from './components/product/product.component';
+import { HousingLocationFormComponent } from './pages/housing-location-form/housing-location-form.component';
+import { ErrorComponent } from './pages/error/error.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     HeaderComponent,
+    HousingLocationFormComponent,
+    ErrorComponent,
   ],
   imports: [
     BrowserModule,
