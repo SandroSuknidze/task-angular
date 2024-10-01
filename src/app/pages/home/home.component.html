@@ -1,7 +1,15 @@
 <section class="results">
-    <app-product
-      *ngFor="let housingLocation of housingLocationList"
-      [housingLocation]="housingLocation"
-      (delete)="onDeleteHousingLocation($event)"
-    ></app-product>
-  </section>
+  @if (housingLocationList.length) {
+    <ng-container>
+      <app-product
+        *ngFor="let housingLocation of housingLocationList"
+        [housingLocation]="housingLocation"
+        (delete)="onDeleteHousingLocation($event)"
+      ></app-product>
+    </ng-container>
+  } @else {
+    <div>
+      <p>No housing locations found.</p>
+    </div>
+  }
+</section>
