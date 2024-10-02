@@ -7,7 +7,7 @@ import { FormBuilder, NonNullableFormBuilder, Validators } from '@angular/forms'
 @Component({
   selector: 'app-housing-location-form',
   templateUrl: './housing-location-form.component.html',
-  styleUrls: ['./housing-location-form.component.css'], // Corrected 'styleUrl' to 'styleUrls'
+  styleUrls: ['./housing-location-form.component.css'],
 })
 export class HousingLocationFormComponent implements OnInit {
   housingLocation: HousingLocation = {} as HousingLocation;

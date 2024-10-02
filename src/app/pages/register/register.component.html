@@ -1,5 +1,5 @@
-<form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
-  <h1>Login</h1>
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="register-form">
+  <h1>Register</h1>
   <div class="form-group">
     <label for="exampleInputEmail1">Email address</label>
     <input
@@ -29,7 +29,12 @@
     {{ errorMessage }}
   </div>
   }
-  <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">
+
+  <button
+    type="submit"
+    class="btn btn-primary"
+    [disabled]="registerForm.invalid"
+  >
     Submit
   </button>
 </form>

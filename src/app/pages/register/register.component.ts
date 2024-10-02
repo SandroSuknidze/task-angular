@@ -6,12 +6,12 @@ import { AuthService } from '../../services/auth/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.css',
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrl: './register.component.css',
 })
-export class LoginComponent {
-  loginForm: FormGroup;
+export class RegisterComponent {
+  registerForm: FormGroup;
   errorMessage: string | null = null;
 
   constructor(
@@ -20,27 +20,25 @@ export class LoginComponent {
     private router: Router,
     private authService: AuthService
   ) {
-    this.loginForm = this.formBuilder.group({
+    this.registerForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
     });
   }
 
   onSubmit(): void {
-    if (this.loginForm.valid) {
-      const { email, password } = this.loginForm.value;
-      this.authService.login(email, password).subscribe({
-        next: (response) => {
-          if (response.accessToken) {
-            this.cookieService.set('token', response.accessToken, 1);
-            this.authService.auth(email);
-            this.router.navigate(['/']);
-          }
+    if (this.registerForm.valid) {
+      const { email, password } = this.registerForm.value;
+      this.authService.register(email, password).subscribe({
+        next: () => {
+          this.cookieService.set('email', email, 1);
+          this.authService.auth(email);
+          this.router.navigate(['/']);
         },
         error: (err: HttpErrorResponse) => {
           console.error('Registration failed', err);
-          if (err.status === 401) {
-            this.errorMessage = 'Invalid Email or Password';
+          if (err.status === 409) {
+            this.errorMessage = 'Email already exists.';
           } else if (err.status === 400) {
             this.errorMessage = 'Invalid input. Please check your data.';
           } else {

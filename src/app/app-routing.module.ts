@@ -5,6 +5,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { authGuard } from './auth.guard';
 import { HousingLocationFormComponent } from './pages/housing-location-form/housing-location-form.component';
 import { ErrorComponent } from './pages/error/error.component';
+import { RegisterComponent } from './pages/register/register.component';
 
 const routes: Routes = [
   {
@@ -25,6 +26,11 @@ const routes: Routes = [
   {
     path: 'housing-locations/edit/:id',
     component: HousingLocationFormComponent,
+  },
+  {
+    path: 'register',
+    component: RegisterComponent,
+    canActivate: [authGuard],
   },
   {
     path: '**',
