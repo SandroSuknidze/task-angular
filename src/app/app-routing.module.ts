@@ -6,6 +6,7 @@ import { authGuard } from './auth.guard';
 import { HousingLocationFormComponent } from './pages/housing-location-form/housing-location-form.component';
 import { ErrorComponent } from './pages/error/error.component';
 import { RegisterComponent } from './pages/register/register.component';
+import { roleGuard } from './guards/role.guard';
 
 const routes: Routes = [
   {
@@ -22,10 +23,14 @@ const routes: Routes = [
   {
     path: 'housing-locations/create',
     component: HousingLocationFormComponent,
+    canActivate: [roleGuard],
+    data: { expectedRole: 'admin' } 
   },
   {
     path: 'housing-locations/edit/:id',
     component: HousingLocationFormComponent,
+    canActivate: [roleGuard],
+    data: { expectedRole: 'admin' } 
   },
   {
     path: 'register',

@@ -2,6 +2,7 @@ import { Component, inject, Output } from '@angular/core';
 import { HousingLocation } from '../../services/product/housing-location';
 import { ProductService } from '../../services/product/product.service';
 import { FormControl, FormGroup } from '@angular/forms';
+import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -17,7 +18,7 @@ export class HomeComponent {
 
 
 
-  constructor() {
+  constructor(private authService: AuthService) {
     this.loadHousingLocations();
     this.filters = new FormGroup({
       name: new FormControl(''),
@@ -63,5 +64,9 @@ export class HomeComponent {
 
   applyFilters(): void {
     this.getFilteredHousingLocations();
+  }
+
+  isAdmin(): boolean {
+    return this.authService.getUserRole() === 'admin';
   }
 }

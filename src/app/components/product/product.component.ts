@@ -9,6 +9,7 @@ import { ProductService } from '../../services/product/product.service';
 })
 export class ProductComponent {
   @Input() housingLocation!:HousingLocation;
+  @Input() isAdmin!: boolean;
   @Output() delete = new EventEmitter<number>();
 
   constructor(private productService: ProductService) {}

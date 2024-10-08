@@ -23,6 +23,7 @@
     <app-product
       *ngFor="let housingLocation of housingLocationList"
       [housingLocation]="housingLocation"
+      [isAdmin]="isAdmin()"
       (delete)="onDeleteHousingLocation($event)"
     ></app-product>
   </ng-container>
