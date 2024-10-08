@@ -21,4 +21,8 @@ export class HeaderComponent implements OnInit{
   logout() {
     this.authService.logout();
   }
+
+  isAdmin(): boolean {
+    return this.authService.getUserRole() === 'admin';
+  }
 }
