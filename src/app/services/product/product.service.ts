@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HousingLocation } from './housing-location';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -7,7 +9,7 @@ import { HousingLocation } from './housing-location';
 export class ProductService {
   private url: string;
 
-  constructor() {
+  constructor(private http: HttpClient) {
     this.url = `${window.location.protocol}//${window.location.hostname}:5125/api`;
   }
 
@@ -90,4 +92,59 @@ export class ProductService {
       throw error;
     }
   }
+
+  async sortHousingLocationByNameASC(): Promise<HousingLocation[]> {
+    try {
+      const response = await fetch(`${this.url}/cards/sortedByNameASC`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(
+          `Error fetching sorted by name housing location: ${response.statusText}`
+        );
+      }
+      return response.json();
+    } catch (error) {
+      console.error('Error fetching sorted by name housing location:', error);
+      throw error;
+    }
+  }
+
+  async sortHousingLocationByNameDESC(): Promise<HousingLocation[]> {
+    try {
+      const response = await fetch(`${this.url}/cards/sortedByNameDESC`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(
+          `Error fetching sorted by name housing location: ${response.statusText}`
+        );
+      }
+      return response.json();
+    } catch (error) {
+      console.error('Error fetching sorted by name housing location:', error);
+      throw error;
+    }
+  }
+
+  getFilteredHousingLocations(filters: any): Observable<HousingLocation[]> {
+    let params = new HttpParams();
+
+    for (const key in filters) {
+      if (filters.hasOwnProperty(key) && filters[key] !== null && filters[key] !== '') {
+        params = params.append(key, filters[key]);
+      }
+    }
+
+    return this.http.get<HousingLocation[]>(`${this.url}/cards/filter`, { params });
+  }
+  
 }

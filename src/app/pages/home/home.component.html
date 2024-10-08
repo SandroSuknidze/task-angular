@@ -1,15 +1,34 @@
+<button (click)="toggleSortOrder()" class="asc-btn">
+  Sort By Name {{ isAscending ? "ASC" : "DESC" }}
+</button>
+<form [formGroup]="filters" class="filter-form" (ngSubmit)="applyFilters()">
+  <div class="form-group">
+    <label for="wifi">WiFi Filter</label>
+    <input type="checkbox" id="wifi" formControlName="wifi">
+  </div>
+
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" id="name" formControlName="name" placeholder="Enter name" />
+  </div>
+
+  <button type="submit" class="btn">Apply Filters</button>
+</form>
+
+
+
 <section class="results">
   @if (housingLocationList.length) {
-    <ng-container>
-      <app-product
-        *ngFor="let housingLocation of housingLocationList"
-        [housingLocation]="housingLocation"
-        (delete)="onDeleteHousingLocation($event)"
-      ></app-product>
-    </ng-container>
+  <ng-container>
+    <app-product
+      *ngFor="let housingLocation of housingLocationList"
+      [housingLocation]="housingLocation"
+      (delete)="onDeleteHousingLocation($event)"
+    ></app-product>
+  </ng-container>
   } @else {
-    <div>
-      <p>No housing locations found.</p>
-    </div>
+  <div>
+    <p>No housing locations found.</p>
+  </div>
   }
 </section>
